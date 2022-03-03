@@ -34,6 +34,21 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   function createBoard() {
     let initialBoard = [];
     // TODO: create array-of-arrays of true/false values
+    for(let row = 0; row < nrows; row++){
+      for(let col = 0; col < ncols; col ++){
+        let inMemoryCell;
+        let rand = Math.random();
+        if(rand > chanceLightStartsOn){
+          inMemoryCell = true;
+        } else{
+          inMemoryCell = false
+        }
+        //rand > chanceLightStartsOn ? inMemoryCell = true : ifalse;
+        initialBoard.push(inMemoryCell);
+      }
+    }
+    console.log(initialBoard);
+
     return initialBoard;
   }
 
@@ -53,12 +68,21 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         }
       };
 
+
+
       // TODO: Make a (deep) copy of the oldBoard
 
       // TODO: in the copy, flip this cell and the cells around it
 
       // TODO: return the copy
     });
+
+    return (
+      <div>
+        <Cell flipCellsAroundMe={flipCellsAround} islit={true} />
+        <Cell flipCellsAroundMe={flipCellsAround} islit={false} />
+      </div>
+    )
   }
 
   // if the game is won, just show a winning msg & render nothing else

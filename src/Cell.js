@@ -16,6 +16,10 @@ import "./Cell.css";
 
 function Cell({ flipCellsAroundMe, isLit }) {
   const classes = `Cell ${isLit ? "Cell-lit" : ""}`;
+
+
+  //TODO: Do we need too also pass the coords of this cell?
+  
   return <td className={classes} onClick={flipCellsAroundMe} />;
 }
 
