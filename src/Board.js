@@ -34,13 +34,13 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   function createBoard() {
     let initialBoard = [];
 
-    for(let row = 0; row < nrows; row++){
-      for(let col = 0; col < ncols; col ++){
+    for (let row = 0; row < nrows; row++) {
+      for (let col = 0; col < ncols; col++) {
         let inMemoryCell;
         let rand = Math.random();
-        if(rand > chanceLightStartsOn){
+        if (rand > chanceLightStartsOn) {
           inMemoryCell = true;
-        } else{
+        } else {
           inMemoryCell = false
         }
         initialBoard.push(inMemoryCell);
@@ -84,22 +84,37 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
       // TODO: return the copy
     });
-
-    return (
-      <div>
-        <Cell flipCellsAroundMe={flipCellsAround} coord="4-3" islit={true} />
-        <Cell flipCellsAroundMe={flipCellsAround} islit={false} />
-      </div>
-    )
   }
-
+  
   // if the game is won, just show a winning msg & render nothing else
-
+  
   // TODO
-
+  
   // make table board
-
+  
   // TODO
+  
+  let cellBoard = []
+
+  for (let y = 0; y < nrows; y++) {
+    let row = []
+    for (let x = 0; x < ncols; x++) {
+      let cell = <Cell
+        flipCellsAroundMe={flipCellsAround}
+        coord={`${y}-${x}`}
+        isLit={board[y][x]}
+      />
+      row.push(cell);
+    }
+    cellBoard.push(<tr key={y}>{row}</tr>);
+  }
+    return (
+
+      <table>
+        <tbody>
+          {cellBoard}
+        </tbody>
+      </table>)
 }
 
 export default Board;
