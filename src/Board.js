@@ -34,8 +34,9 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   function createBoard() {
     let initialBoard = [];
 
-    for (let row = 0; row < nrows; row++) {
-      for (let col = 0; col < ncols; col++) {
+    for (let y = 0; y < nrows; y++) {
+      let row = []
+      for (let x = 0; x < ncols; x++) {
         let inMemoryCell;
         let rand = Math.random();
         if (rand > chanceLightStartsOn) {
@@ -43,10 +44,11 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         } else {
           inMemoryCell = false
         }
-        initialBoard.push(inMemoryCell);
+        row.push(inMemoryCell);
       }
+      initialBoard.push(row);
     }
-    console.log(initialBoard);
+
 
     return initialBoard;
   }
@@ -64,18 +66,11 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
         if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
           boardCopy[y][x] = !boardCopy[y][x];
+          console.log("SHould be flipped",!boardCopy[y][x])
         }
+
+        return boardCopy
       };
-
-
-
-
-      // BATTLE PLAN FOR COORDS
-      // MAP function that takes in the array of arrays
-      // Board.map (
-      // row => {}
-      //)
-      // We need index because our coords are y-x just like in memory
 
 
       // TODO: Make a (deep) copy of the oldBoard
@@ -83,6 +78,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
       // TODO: in the copy, flip this cell and the cells around it
 
       // TODO: return the copy
+      return flipCell(y,x, oldBoard);
     });
   }
   
@@ -99,6 +95,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   for (let y = 0; y < nrows; y++) {
     let row = []
     for (let x = 0; x < ncols; x++) {
+      // console.log(`y is equal to ${y}, x is equal to ${x}, board yx is ${board[y][x]}`)
       let cell = <Cell
         flipCellsAroundMe={flipCellsAround}
         coord={`${y}-${x}`}
