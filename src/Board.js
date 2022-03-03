@@ -33,7 +33,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
   function createBoard() {
     let initialBoard = [];
-    // TODO: create array-of-arrays of true/false values
+
     for(let row = 0; row < nrows; row++){
       for(let col = 0; col < ncols; col ++){
         let inMemoryCell;
@@ -43,7 +43,6 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         } else{
           inMemoryCell = false
         }
-        //rand > chanceLightStartsOn ? inMemoryCell = true : ifalse;
         initialBoard.push(inMemoryCell);
       }
     }
@@ -70,6 +69,15 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
 
 
+
+      // BATTLE PLAN FOR COORDS
+      // MAP function that takes in the array of arrays
+      // Board.map (
+      // row => {}
+      //)
+      // We need index because our coords are y-x just like in memory
+
+
       // TODO: Make a (deep) copy of the oldBoard
 
       // TODO: in the copy, flip this cell and the cells around it
@@ -79,7 +87,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
     return (
       <div>
-        <Cell flipCellsAroundMe={flipCellsAround} islit={true} />
+        <Cell flipCellsAroundMe={flipCellsAround} coord="4-3" islit={true} />
         <Cell flipCellsAroundMe={flipCellsAround} islit={false} />
       </div>
     )
